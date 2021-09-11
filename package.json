@@ -2,11 +2,14 @@
   "name": "form007",
   "version": "0.1.9",
   "private": false,
+  "main": "dist/FormBuilder.js",  
+  "module": "dist/FormBuilder.js",  
+  "files": [ "dist", "README.md" ],  
   "babel": {
     "presets": [
       "@babel/preset-react"
     ]
-  },
+  }, 
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@testing-library/jest-dom": "^5.14.1",
@@ -24,7 +27,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "publish:npm": "rm -rf dist && mkdir dist &&  babel src/components -d dist --copy-files"
