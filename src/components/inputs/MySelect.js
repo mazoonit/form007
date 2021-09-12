@@ -41,9 +41,9 @@ export default function MySelect({
   if (!color) {
     color = "#000";
   }
-  if (!maxWidth) {
+ /** if (!maxWidth) {
     maxWidth = "400px";
-  }
+  }**/
   if (!minWidth) {
     minWidth = "100px";
   }

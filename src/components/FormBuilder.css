@@ -28,7 +28,6 @@
   flex: 1;
   margin: 15px;
 }
-
 .form-label {
   display: flex;
   flex-direction: column;
@@ -72,4 +71,7 @@
 
 .form-submitBtn {
   padding: 7px 20px;
+}
+.MuiFormControl-root {
+  width: 100%;
 }

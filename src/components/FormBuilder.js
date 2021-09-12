@@ -6,6 +6,7 @@ import MySelect from "./inputs/MySelect.js";
 import MyCheckBox from "./inputs/MyCheckbox.js";
 import ErrorArea from "./errors/ErrorArea.js";
 import MySubmit from "./inputs/MySubmit.js";
+import { Container,Row,Col } from "reactstrap/";
 import "./FormBuilder.css";
 import {
   StylesProvider,
@@ -25,6 +26,7 @@ export default function GenericForm({
   dir,
   title,
   submitHandler,
+  grid={xs:12,md:6},
   values,
   noSubmit,
   fullWidth,
@@ -50,13 +52,11 @@ export default function GenericForm({
       type:"light"
     },
   });
-
   const onSubmit = (data) => {
     if (submitHandler) {
       submitHandler(data, setError, language);
     }
   };
-
   const titleHeader = () =>
     title ? (
       <h3 style={{ textAlign: "center" }}>
@@ -75,11 +75,11 @@ export default function GenericForm({
         >
           {titleHeader()}
           <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            <div className="container">
+            <Container>
               {rows &&
                 rows.map((inputs, key) => {
                   return (
-                    <div className="row" key={key}>
+                    <Row key={key}>
                       {inputs &&
                         inputs.map((input, index) => {
                           input.control = control;
@@ -97,9 +97,10 @@ export default function GenericForm({
                               : input.label;
                           input.color = color;
                           return (
-                            <div
-                              className="col"
+                            <Col
                               key={index}
+                              xs={grid.xs}
+                              md={grid.md}
                               style={{ margin: 0 }}
                             >
                               {input.type === "select" ? (
@@ -111,10 +112,10 @@ export default function GenericForm({
                               ) : (
                                 <MyInput key={key} {...input} />
                               )}
-                            </div>
+                            </Col>
                           );
                         })}
-                    </div>
+                    </Row>
                   );
                 })}
               {/*<ErrorArea errors={errors} />*/}
@@ -129,7 +130,7 @@ export default function GenericForm({
                   }
                 />
               ) : null}
-            </div>
+            </Container>
           </form>
         </div>
       </ThemeProvider>

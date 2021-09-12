@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import FormBuilder from './components/FormBuilder';
+export default FormBuilder;
 ReactDOM.render(
   <React.StrictMode>
     <App />

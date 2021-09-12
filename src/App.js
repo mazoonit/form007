@@ -7,12 +7,12 @@ import en from "./dictionary/en";
 
 function App() {
   const [language, setLanguage] = useState("en");
-
+  function Login(blah){console.log(blah)}
   return (
     <div className="App" dir="rtl">
       <button
         onClick={() => {
-          language == "en" ? setLanguage("ar") : setLanguage("en");
+          language === "en" ? setLanguage("ar") : setLanguage("en");
         }}
       >
         Change Lang
@@ -93,8 +93,13 @@ function App() {
         ]}
         values={[]}
         dictionary={{ ar: ar, en: en }}
-        language={"ar"}
-        submitButtonText={"next"}
+        language={language}
+        submitButtonText={"Login"}
+        color={"#587fdd"}
+        submitHandler={Login}
+        noSubmit={false}
+        grid={{xs:12,md:6}}
+        
       />
     </div>
   );
