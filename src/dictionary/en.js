@@ -1,5 +1,6 @@
 export default {
   test: "Test",
   bla:"bla",
-  Login:"Login"
+  Login:"Login",
+  hello:"hello",
 };

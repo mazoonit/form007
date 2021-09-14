@@ -8,6 +8,7 @@ import MySelect from "./inputs/MySelect.js";
 import MyCheckBox from "./inputs/MyCheckbox.js";
 import ErrorArea from "./errors/ErrorArea.js";
 import MySubmit from "./inputs/MySubmit.js";
+import { Container, Row, Col } from "reactstrap/";
 import "./FormBuilder.css";
 import { StylesProvider, jssPreset, ThemeProvider, createTheme } from "@material-ui/core/styles";
 import { create } from "jss";
@@ -17,15 +18,21 @@ const jss = create({
 });
 export default function GenericForm({
   rows,
-  language,
+  language = "en",
+  languageName = "latinName",
   dictionary = {},
-  dir,
+  dir = "ltr",
   title,
   submitHandler,
+  grid = {
+    xs: 12,
+    md: 6
+  },
   values,
   noSubmit,
   fullWidth,
   submitButtonText,
+  submitButtonFullWidth,
   color
 }) {
   const {
@@ -79,12 +86,10 @@ export default function GenericForm({
     } : null
   }, titleHeader(), /*#__PURE__*/React.createElement("form", {
     className: "form",
+    dir: dir,
     onSubmit: handleSubmit(onSubmit)
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "container"
-  }, rows && rows.map((inputs, key) => {
-    return /*#__PURE__*/React.createElement("div", {
-      className: "row",
+  }, /*#__PURE__*/React.createElement(Container, null, rows && rows.map((inputs, key) => {
+    return /*#__PURE__*/React.createElement(Row, {
       key: key
     }, inputs && inputs.map((input, index) => {
       input.control = control;
@@ -93,15 +98,21 @@ export default function GenericForm({
       input.setValue = setValue;
       input.getValues = getValues;
       input.language = language;
+      input.languageName = languageName;
       input.onChange = onChange;
       input.handleSubmit = handleSubmit;
       input.translate = dictionary[language] && dictionary[language][input.label] ? dictionary[language][input.label] : input.label;
+      input.placeHolder = dictionary[language] && dictionary[language][input.placeHolder] ? dictionary[language][input.placeHolder] : input.placeHolder;
+      input.helperText = dictionary[language] && dictionary[language][input.helperText] ? dictionary[language][input.helperText] : input.helperText;
       input.color = color;
-      return /*#__PURE__*/React.createElement("div", {
-        className: "col",
+      let xs = input.xs ? input.xs : grid.xs;
+      let md = input.md ? input.md : grid.md;
+      return /*#__PURE__*/React.createElement(Col, {
         key: index,
+        xs: input.fullWidth ? 12 : xs,
+        md: input.fullWidth ? 12 : md,
         style: {
-          margin: 0
+          marginBottom: "1rem"
         }
       }, input.type === "select" ? /*#__PURE__*/React.createElement(MySelect, _extends({
         key: key
@@ -115,6 +126,7 @@ export default function GenericForm({
     }));
   }), !noSubmit ? /*#__PURE__*/React.createElement(MySubmit, {
     color: color,
+    fullWidth: submitButtonFullWidth,
     submitButtonText: dictionary[language] && dictionary[language][submitButtonText] ? dictionary[language][submitButtonText] : "Submit"
   }) : null)))));
 }

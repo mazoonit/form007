@@ -17,7 +17,7 @@ export default function MyCheckBox({
     render: ({
       field
     }) => /*#__PURE__*/React.createElement(Checkbox, _extends({}, field, {
-      checked: value
+      checked: field.value
     })),
     name: name,
     control: control,

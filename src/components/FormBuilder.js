@@ -6,7 +6,7 @@ import MySelect from "./inputs/MySelect.js";
 import MyCheckBox from "./inputs/MyCheckbox.js";
 import ErrorArea from "./errors/ErrorArea.js";
 import MySubmit from "./inputs/MySubmit.js";
-import { Container,Row,Col } from "reactstrap/";
+import { Container, Row, Col } from "reactstrap/";
 import "./FormBuilder.css";
 import {
   StylesProvider,
@@ -21,17 +21,19 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 export default function GenericForm({
   rows,
-  language,
+  language = "en",
+  languageName = "latinName",
   dictionary = {},
-  dir,
+  dir = "ltr",
   title,
   submitHandler,
-  grid={xs:12,md:6},
+  grid = { xs: 12, md: 6 },
   values,
   noSubmit,
   fullWidth,
   submitButtonText,
-  color
+  submitButtonFullWidth,
+  color,
 }) {
   const {
     handleSubmit,
@@ -45,11 +47,13 @@ export default function GenericForm({
   } = useForm({
     defaultValues: values,
   });
-  if(!color){color="#000";}
+  if (!color) {
+    color = "#000";
+  }
   const theme = createTheme({
     palette: {
       primary: { main: color },
-      type:"light"
+      type: "light",
     },
   });
   const onSubmit = (data) => {
@@ -57,6 +61,7 @@ export default function GenericForm({
       submitHandler(data, setError, language);
     }
   };
+
   const titleHeader = () =>
     title ? (
       <h3 style={{ textAlign: "center" }}>
@@ -74,7 +79,7 @@ export default function GenericForm({
           style={fullWidth ? { width: "100%" } : null}
         >
           {titleHeader()}
-          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <form className="form" dir={dir} onSubmit={handleSubmit(onSubmit)}>
             <Container>
               {rows &&
                 rows.map((inputs, key) => {
@@ -88,6 +93,7 @@ export default function GenericForm({
                           input.setValue = setValue;
                           input.getValues = getValues;
                           input.language = language;
+                          input.languageName = languageName;
                           input.onChange = onChange;
                           input.handleSubmit = handleSubmit;
                           input.translate =
@@ -95,13 +101,25 @@ export default function GenericForm({
                             dictionary[language][input.label]
                               ? dictionary[language][input.label]
                               : input.label;
+                          input.placeHolder =
+                            dictionary[language] &&
+                            dictionary[language][input.placeHolder]
+                              ? dictionary[language][input.placeHolder]
+                              : input.placeHolder;
+                          input.helperText =
+                            dictionary[language] &&
+                            dictionary[language][input.helperText]
+                              ? dictionary[language][input.helperText]
+                              : input.helperText;
                           input.color = color;
+                          let xs = input.xs ? input.xs : grid.xs;
+                          let md = input.md ? input.md : grid.md;
                           return (
                             <Col
                               key={index}
-                              xs={grid.xs}
-                              md={grid.md}
-                              style={{ margin: 0 }}
+                              xs={input.fullWidth ? 12 : xs}
+                              md={input.fullWidth ? 12 : md}
+                              style={{ marginBottom: "1rem" }}
                             >
                               {input.type === "select" ? (
                                 <MySelect key={key} {...input} />
@@ -122,6 +140,7 @@ export default function GenericForm({
               {!noSubmit ? (
                 <MySubmit
                   color={color}
+                  fullWidth={submitButtonFullWidth}
                   submitButtonText={
                     dictionary[language] &&
                     dictionary[language][submitButtonText]

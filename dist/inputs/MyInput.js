@@ -15,7 +15,8 @@ export default function MyInput({
   errors,
   variant,
   color,
-  fullWidth
+  fullWidth,
+  placeHolder
 }) {
   return /*#__PURE__*/React.createElement("div", {
     style: {
@@ -36,6 +37,7 @@ export default function MyInput({
       variant: variant ? variant : "outlined",
       size: size ? size : "small",
       id: name,
+      placeholder: placeHolder,
       type: type
     })),
     name: name,

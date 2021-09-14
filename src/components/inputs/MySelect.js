@@ -1,10 +1,11 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import { Select, MenuItem, FormControl } from "@material-ui/core";
+/*import { Select, MenuItem, FormControl } from "@material-ui/core";*/
 //import Translate from "react-translate-component";
 import { create } from "jss";
 import rtl from "jss-rtl";
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+import Select from "react-select";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -28,6 +29,9 @@ export default function MySelect({
   maxWidth,
   minWidth,
   arrayFlag,
+  defaultValue,
+  latinArabicIdProcessing,
+  languageName,
 }) {
   /*
     if (!control.defaultValuesRef.current[name]) {
@@ -38,36 +42,56 @@ export default function MySelect({
         }
     }
 */
+  if (latinArabicIdProcessing) {
+    let parsedRows = [];
+    rows.map((row) => {
+      let parsedRow = {};
+      parsedRow.value = row.id;
+      parsedRow.label = row[languageName];
+      parsedRows.push(parsedRow);
+    });
+    rows = parsedRows;
+  }
+
   if (!color) {
     color = "#000";
   }
- /** if (!maxWidth) {
-    maxWidth = "400px";
-  }**/
-  if (!minWidth) {
-    minWidth = "100px";
-  }
-  let defaultValue = "";
-  if (value) defaultValue = value;
-  else if (rows && rows[0] && rows[0].id) defaultValue = rows[0].id;
-  else if (rows && rows[0] && rows[0].value) defaultValue = rows[0].value;
 
   return (
     <label className="form-label" /*style={{ margin: "20px" }}*/>
       <p style={{ color: color }}>{translate}</p>
       {/*  <Translate content={name} style={{ margin: "0 0 5px 0" }} />*/}
+      {/*
       <FormControl
         fullWidth
         style={{ textAlign: "justify", maxWidth: maxWidth, minWidth: minWidth }}
         size={size ? size : "small"}
       >
-        <Controller
-          name={name}
-          control={control}
-          defaultValue={value}
-          handleChange={handleChange && handleChange}
-          render={({ field }) => {
-            return (
+      */}
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={value}
+        handleChange={handleChange && handleChange}
+        render={({ field }) => {
+          return (
+            <Select
+              /*
+              className="basic-single"
+              classNamePrefix="select"
+              */
+              className="reactSelectFullWidth"
+              isRtl={language == "ar" ? true : false}
+              isSearchable={true}
+              name={name}
+              defaultValue={defaultValue ? defaultValue : rows[0]}
+              options={rows}
+              onChange={(data) => {
+                field.onChange(data.value);
+              }}
+            />
+
+            /*
               <StylesProvider jss={jss}>
                 <Select
                   {...field}
@@ -105,10 +129,11 @@ export default function MySelect({
                     })}
                 </Select>
               </StylesProvider>
-            );
-          }}
-        />
-      </FormControl>
+              */
+          );
+        }}
+      />
+      {/*</FormControl>*/}
     </label>
   );
 }
