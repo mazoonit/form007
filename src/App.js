@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import FormBuilder from "./components/FormBuilder";
 import ar from "./dictionary/ar";
 import en from "./dictionary/en";
+import Contacts from "./components/inputs/Contacts";
 function App() {
   const [language, setLanguage] = useState("en");
   function Login(blah) {
@@ -26,7 +27,7 @@ function App() {
               label: "cost",
               type: "text",
               value: "",
-              placeHolder:"hello",
+              placeHolder: "hello",
               size: "small",
               helperText: "Dontleaveitblank",
               variant: "outlined",
@@ -50,6 +51,26 @@ function App() {
               },
               value: "bla",
               fullWidth: false,
+            },
+          ],
+          [
+            {
+              name: "contacts",
+              type: "custom",
+              value: [
+                {
+                  email: "smazen",
+                  mobilePhone: "011",
+                  telephone: "03",
+                  fax: "22",
+                },
+              ],
+              component: (props) => {
+                return <Contacts {...props} />;
+              },
+              registerObject: {
+                required: true,
+              },
             },
           ],
         ]}

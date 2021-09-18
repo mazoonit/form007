@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 //import Translate from "react-translate-component";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import MyInput from "./inputs/MyInput.js";
 import MySelect from "./inputs/MySelect.js";
 import MyCheckBox from "./inputs/MyCheckbox.js";
@@ -87,6 +87,7 @@ export default function GenericForm({
                     <Row key={key}>
                       {inputs &&
                         inputs.map((input, index) => {
+                          input.label = input.label ? input.label : input.name;
                           input.control = control;
                           input.errors = errors;
                           input.reset = reset;
