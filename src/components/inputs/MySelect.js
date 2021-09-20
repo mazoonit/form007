@@ -50,6 +50,9 @@ export default function MySelect({
   }
   let defaultLabelMargin = "0 0 0.75rem 0";
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
+  if (defaultValue) {
+    defaultValue = rows.filter((row) => row.value == defaultValue)[0];
+  }
   return (
     <label style={{ width: "100%" }}>
       <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
@@ -59,7 +62,8 @@ export default function MySelect({
         name={name}
         control={control}
         defaultValue={value}
-        handleChange={handleChange && handleChange}
+        value={value}
+        //handleChange={handleChange && handleChange}
         render={({ field }) => {
           return (
             <Select
@@ -70,6 +74,7 @@ export default function MySelect({
               defaultValue={defaultValue ? defaultValue : rows[0]}
               options={rows}
               onChange={(data) => {
+                console.log(data.value);
                 field.onChange(data.value);
               }}
               styles={{

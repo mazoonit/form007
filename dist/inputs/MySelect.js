@@ -32,17 +32,9 @@ export default function MySelect({
   arrayFlag,
   defaultValue,
   latinArabicIdProcessing,
-  languageName
+  languageName,
+  labelMargin
 }) {
-  /*
-    if (!control.defaultValuesRef.current[name]) {
-        if (!value && rows && rows[0] && rows[0].id) {
-            control.defaultValuesRef.current[name] = rows[0].id;
-        } else if (!value && rows && rows[0] && rows[0].value) {
-            control.defaultValuesRef.current[name] = rows[0].value;
-        }
-    }
-  */
   if (latinArabicIdProcessing) {
     let parsedRows = [];
     rows.map(row => {
@@ -58,15 +50,19 @@ export default function MySelect({
     color = "#000";
   }
 
+  let defaultLabelMargin = "0 0 0.75rem 0";
+  defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return /*#__PURE__*/React.createElement("label", {
-    className: "form-label"
-    /*style={{ margin: "20px" }}*/
-
+    style: {
+      width: "100%"
+    }
   }, /*#__PURE__*/React.createElement("p", {
     style: {
-      color: color
+      color: color,
+      margin: 0,
+      margin: defaultLabelMargin
     }
-  }, translate), /*#__PURE__*/React.createElement(Controller, {
+  }, translate ? translate : name), /*#__PURE__*/React.createElement(Controller, {
     name: name,
     control: control,
     defaultValue: value,
@@ -74,12 +70,7 @@ export default function MySelect({
     render: ({
       field
     }) => {
-      return /*#__PURE__*/React.createElement(Select
-      /*
-      className="basic-single"
-      classNamePrefix="select"
-      */
-      , {
+      return /*#__PURE__*/React.createElement(Select, {
         className: "reactSelectFullWidth",
         isRtl: language == "ar" ? true : false,
         isSearchable: true,
@@ -88,48 +79,29 @@ export default function MySelect({
         options: rows,
         onChange: data => {
           field.onChange(data.value);
-        }
-      })
-      /*
-        <StylesProvider jss={jss}>
-          <Select
-            {...field}
-            helperText={errors[name] ? helperText : null}
-            error={errors[name] ? true : false}
-            labelId={name + "Id"}
-            label={name}
-            id={name}
-            defaultValue={defaultValue}
-            id={(variant ? variant : "outlined") + "-basic"}
-            variant={variant ? variant : undefined}
-            size={size ? size : "small"}
-          >
-            {rows &&
-              rows.map((row, idx) => {
-                let imaginaryRow={};
-                if(arrayFlag){
-                  imaginaryRow.value=row;
-                  row=imaginaryRow;
-                }
-                return (
-                  <MenuItem
-                    key={idx}
-                    value={row.id ? row.id : row.value ? row.value : idx}
-                  >
-                    {row[language]
-                      ? row[language]
-                      : row.name
-                      ? row.name
-                      : row.value
-                      ? row.value
-                      : idx}
-                  </MenuItem>
-                );
-              })}
-          </Select>
-        </StylesProvider>
-        */
-      ;
+        },
+        styles: {
+          option: (provided, state) => ({ ...provided // color: state.isSelected ? "red" : "blue",
+
+          }),
+          menu: (provided, state) => ({ ...provided,
+            borderBottom: "1px dotted pink",
+            color: color
+          }),
+          input: (provided, state) => ({ ...provided,
+            paddingTop: 5,
+            paddingBottom: 5
+          })
+        },
+        theme: theme => ({ ...theme,
+          borderRadius: 0,
+          colors: { ...theme.colors,
+            //primary25: color,
+            primary: color
+          },
+          padding: 50
+        })
+      });
     }
   }));
 }

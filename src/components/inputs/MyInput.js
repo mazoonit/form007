@@ -33,13 +33,7 @@ export default function MyInput({
   }
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return (
-    <div
-      style={
-        {
-          /*marginTop: "10px"*/
-        }
-      }
-    >
+    <div style={{}}>
       <p style={{ color: color, margin: defaultLabelMargin }}>{translate}</p>
       <Controller
         render={({ field }) => (

@@ -23,7 +23,7 @@ function App() {
         rows={[
           [
             {
-              name: "cost",
+              name: "cost1",
               label: "cost",
               type: "text",
               value: "",
@@ -33,11 +33,11 @@ function App() {
               variant: "filled",
               labelMargin: "0 0 0.5rem 0",
               registerObject: {
-                required: true,
+               // required: true,
               },
               fullWidth: false,
               md: 3,
-              enableLabel:true
+              enableLabel: true,
             },
             {
               name: "sel",
@@ -49,16 +49,17 @@ function App() {
                 { value: "bla", label: "bla" },
                 { value: "mazen", label: "label" },
               ],
+              defaultValue: "mazen",
+              value: "mazen",
               registerObject: {
                 required: true,
               },
-              value: "bla",
               fullWidth: false,
               md: 3,
-              enableLabel:true
+              enableLabel: true,
             },
             {
-              name: "cost",
+              name: "cost2",
               label: "cost",
               type: "text",
               value: "",
@@ -69,12 +70,12 @@ function App() {
               variant: "outlined",
               labelMargin: "0 0 1rem 0",
               registerObject: {
-                required: true,
+              //  required: true,
               },
               fullWidth: false,
             },
             {
-              name: "cost",
+              name: "cost3",
               label: "cost",
               type: "text",
               value: "",
@@ -85,10 +86,10 @@ function App() {
               variant: "standard",
               labelMargin: "0 0 0.5rem 0",
               registerObject: {
-                required: true,
+            //    required: true,
               },
               fullWidth: false,
-              enableLabel:true
+              enableLabel: true,
             },
           ],
           [
@@ -112,7 +113,7 @@ function App() {
             },
           ],
         ]}
-        values={[]}
+        values={{}}
         dictionary={{ ar: ar, en: en }}
         language={language}
         languageName={language == "ar" ? "arabicName" : "latinName"}
