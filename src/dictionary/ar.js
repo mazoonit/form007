@@ -3,5 +3,6 @@ export default {
   bla:"بلا",
   Login:"تسجيل",
   hello:"هولاااااااا",
-  Dontleaveitblank:"لا تترك لي الأشياء"
+  Dontleaveitblank:"لا تترك لي الأشياء",
+  cost:"كوست"
 };

@@ -1,12 +1,14 @@
 import React from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 
-export default function Contacts({ value }) {
+export default function Contacts({ value,control }) {
+  /*
   const { register, handleSubmit, control, reset, trigger, setError } = useForm(
     {
       // defaultValues: {}; you can populate the fields by this attribute
     }
   );
+  */
   const { fields, append, remove } = useFieldArray({
     control,
     name: "test",

@@ -30,11 +30,14 @@ function App() {
               placeHolder: "hello",
               size: "small",
               helperText: "Dontleaveitblank",
-              variant: "outlined",
+              variant: "filled",
+              labelMargin: "0 0 0.5rem 0",
               registerObject: {
                 required: true,
               },
               fullWidth: false,
+              md: 3,
+              enableLabel:true
             },
             {
               name: "sel",
@@ -51,6 +54,41 @@ function App() {
               },
               value: "bla",
               fullWidth: false,
+              md: 3,
+              enableLabel:true
+            },
+            {
+              name: "cost",
+              label: "cost",
+              type: "text",
+              value: "",
+              md: 3,
+              placeHolder: "hello",
+              size: "small",
+              helperText: "Dontleaveitblank",
+              variant: "outlined",
+              labelMargin: "0 0 1rem 0",
+              registerObject: {
+                required: true,
+              },
+              fullWidth: false,
+            },
+            {
+              name: "cost",
+              label: "cost",
+              type: "text",
+              value: "",
+              md: 3,
+              placeHolder: "hello",
+              size: "small",
+              helperText: "Dontleaveitblank",
+              variant: "standard",
+              labelMargin: "0 0 0.5rem 0",
+              registerObject: {
+                required: true,
+              },
+              fullWidth: false,
+              enableLabel:true
             },
           ],
           [
@@ -78,6 +116,7 @@ function App() {
         dictionary={{ ar: ar, en: en }}
         language={language}
         languageName={language == "ar" ? "arabicName" : "latinName"}
+        dir={language == "ar" ? "rtl" : "ltr"}
         submitButtonText={"Login"}
         color={"#587fdd"}
         submitHandler={Login}

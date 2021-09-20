@@ -32,16 +32,8 @@ export default function MySelect({
   defaultValue,
   latinArabicIdProcessing,
   languageName,
+  labelMargin,
 }) {
-  /*
-    if (!control.defaultValuesRef.current[name]) {
-        if (!value && rows && rows[0] && rows[0].id) {
-            control.defaultValuesRef.current[name] = rows[0].id;
-        } else if (!value && rows && rows[0] && rows[0].value) {
-            control.defaultValuesRef.current[name] = rows[0].value;
-        }
-    }
-*/
   if (latinArabicIdProcessing) {
     let parsedRows = [];
     rows.map((row) => {
@@ -56,18 +48,13 @@ export default function MySelect({
   if (!color) {
     color = "#000";
   }
-
+  let defaultLabelMargin = "0 0 0.75rem 0";
+  defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return (
-    <label className="form-label" /*style={{ margin: "20px" }}*/>
-      <p style={{ color: color }}>{translate}</p>
-      {/*  <Translate content={name} style={{ margin: "0 0 5px 0" }} />*/}
-      {/*
-      <FormControl
-        fullWidth
-        style={{ textAlign: "justify", maxWidth: maxWidth, minWidth: minWidth }}
-        size={size ? size : "small"}
-      >
-      */}
+    <label style={{ width: "100%" }}>
+      <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
+        {translate ? translate : name}
+      </p>
       <Controller
         name={name}
         control={control}
@@ -76,10 +63,6 @@ export default function MySelect({
         render={({ field }) => {
           return (
             <Select
-              /*
-              className="basic-single"
-              classNamePrefix="select"
-              */
               className="reactSelectFullWidth"
               isRtl={language == "ar" ? true : false}
               isSearchable={true}
@@ -89,51 +72,36 @@ export default function MySelect({
               onChange={(data) => {
                 field.onChange(data.value);
               }}
+              styles={{
+                option: (provided, state) => ({
+                  ...provided,
+                  // color: state.isSelected ? "red" : "blue",
+                }),
+                menu: (provided, state) => ({
+                  ...provided,
+                  borderBottom: "1px dotted pink",
+                  color: color,
+                }),
+                input: (provided, state) => ({
+                  ...provided,
+                  paddingTop: 5,
+                  paddingBottom: 5,
+                }),
+              }}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  //primary25: color,
+                  primary: color,
+                },
+                padding: 50,
+              })}
             />
-
-            /*
-              <StylesProvider jss={jss}>
-                <Select
-                  {...field}
-                  helperText={errors[name] ? helperText : null}
-                  error={errors[name] ? true : false}
-                  labelId={name + "Id"}
-                  label={name}
-                  id={name}
-                  defaultValue={defaultValue}
-                  id={(variant ? variant : "outlined") + "-basic"}
-                  variant={variant ? variant : undefined}
-                  size={size ? size : "small"}
-                >
-                  {rows &&
-                    rows.map((row, idx) => {
-                      let imaginaryRow={};
-                      if(arrayFlag){
-                        imaginaryRow.value=row;
-                        row=imaginaryRow;
-                      }
-                      return (
-                        <MenuItem
-                          key={idx}
-                          value={row.id ? row.id : row.value ? row.value : idx}
-                        >
-                          {row[language]
-                            ? row[language]
-                            : row.name
-                            ? row.name
-                            : row.value
-                            ? row.value
-                            : idx}
-                        </MenuItem>
-                      );
-                    })}
-                </Select>
-              </StylesProvider>
-              */
           );
         }}
       />
-      {/*</FormControl>*/}
     </label>
   );
 }
