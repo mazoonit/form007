@@ -1,6 +1,7 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 import { TextField, InputLabel } from "@material-ui/core";
+import { useTheme } from "@material-ui/core";
 
 export default function MyInput({
   name,
@@ -13,7 +14,6 @@ export default function MyInput({
   registerObject,
   errors,
   variant,
-  color,
   fullWidth,
   placeHolder,
   labelMargin,
@@ -31,6 +31,8 @@ export default function MyInput({
       defaultLabelMargin = "0 0 0.5rem 0";
       break;
   }
+  const theme = useTheme();
+  const color = theme.palette.primary.main;
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return (
     <div style={{}}>

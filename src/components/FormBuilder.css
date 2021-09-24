@@ -78,3 +78,6 @@
 .reactSelectFullWidth {
   width: 100%;
 }
+.MuiOutlinedInput-notchedOutline {
+  border-width: 2px !important;
+}

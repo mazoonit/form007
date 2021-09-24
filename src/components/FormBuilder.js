@@ -112,7 +112,6 @@ export default function GenericForm({
                             dictionary[language][input.helperText]
                               ? dictionary[language][input.helperText]
                               : input.helperText;
-                          input.color = color;
                           let xs = input.xs ? input.xs : grid.xs;
                           let md = input.md ? input.md : grid.md;
                           return (
@@ -140,7 +139,6 @@ export default function GenericForm({
               {/*<ErrorArea errors={errors} />*/}
               {!noSubmit ? (
                 <MySubmit
-                  color={color}
                   fullWidth={submitButtonFullWidth}
                   submitButtonText={
                     dictionary[language] &&

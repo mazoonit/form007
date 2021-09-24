@@ -119,7 +119,7 @@ function App() {
         languageName={language == "ar" ? "arabicName" : "latinName"}
         dir={language == "ar" ? "rtl" : "ltr"}
         submitButtonText={"Login"}
-        color={"#587fdd"}
+        color={"#F00"}
         submitHandler={Login}
         noSubmit={false}
         grid={{ xs: 12, md: 6 }}

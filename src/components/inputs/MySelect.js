@@ -6,7 +6,7 @@ import { create } from "jss";
 import rtl from "jss-rtl";
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
 import Select from "react-select";
-
+import { useTheme } from "@material-ui/core";
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
@@ -24,7 +24,6 @@ export default function MySelect({
   variant,
   size,
   translateType,
-  color,
   fullWidth,
   maxWidth,
   minWidth,
@@ -44,15 +43,13 @@ export default function MySelect({
     });
     rows = parsedRows;
   }
-
-  if (!color) {
-    color = "#000";
-  }
   let defaultLabelMargin = "0 0 0.75rem 0";
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   if (defaultValue) {
     defaultValue = rows.filter((row) => row.value == defaultValue)[0];
   }
+  const theme = useTheme();
+  const color = theme.palette.primary.main;
   return (
     <label style={{ width: "100%" }}>
       <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
