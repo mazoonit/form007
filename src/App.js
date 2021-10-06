@@ -33,7 +33,7 @@ function App() {
               variant: "filled",
               labelMargin: "0 0 0.5rem 0",
               registerObject: {
-               // required: true,
+                // required: true,
               },
               fullWidth: false,
               md: 3,
@@ -50,7 +50,7 @@ function App() {
                 { value: "mazen", label: "label" },
               ],
               defaultValue: "mazen",
-              value: "mazen",
+              value: null,
               registerObject: {
                 required: true,
               },
@@ -70,7 +70,7 @@ function App() {
               variant: "outlined",
               labelMargin: "0 0 1rem 0",
               registerObject: {
-              //  required: true,
+                //  required: true,
               },
               fullWidth: false,
             },
@@ -86,7 +86,7 @@ function App() {
               variant: "standard",
               labelMargin: "0 0 0.5rem 0",
               registerObject: {
-            //    required: true,
+                //    required: true,
               },
               fullWidth: false,
               enableLabel: true,
@@ -113,7 +113,7 @@ function App() {
             },
           ],
         ]}
-        values={{}}
+        values={{sel:"bla"}}
         dictionary={{ ar: ar, en: en }}
         language={language}
         languageName={language == "ar" ? "arabicName" : "latinName"}

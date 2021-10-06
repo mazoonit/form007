@@ -38,9 +38,7 @@ export default function MyInput({
 
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return /*#__PURE__*/React.createElement("div", {
-    style: {
-      /*marginTop: "10px"*/
-    }
+    style: {}
   }, /*#__PURE__*/React.createElement("p", {
     style: {
       color: color,

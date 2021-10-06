@@ -50,9 +50,7 @@ export default function MySelect({
   }
   let defaultLabelMargin = "0 0 0.75rem 0";
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
-  if (defaultValue) {
-    defaultValue = rows.filter((row) => row.value == defaultValue)[0];
-  }
+
   return (
     <label style={{ width: "100%" }}>
       <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
@@ -61,8 +59,8 @@ export default function MySelect({
       <Controller
         name={name}
         control={control}
-        defaultValue={value}
-        value={value}
+        defaultValue={defaultValue ? defaultValue : rows[0].value}
+        value={value ? value : rows[0].value}
         //handleChange={handleChange && handleChange}
         render={({ field }) => {
           return (
@@ -71,10 +69,14 @@ export default function MySelect({
               isRtl={language == "ar" ? true : false}
               isSearchable={true}
               name={name}
-              defaultValue={defaultValue ? defaultValue : rows[0]}
+              defaultValue={
+                defaultValue
+                  ? rows.find((row) => row.value == defaultValue)
+                  : rows[0]
+              }
               options={rows}
+              value={rows.find((row) => row.value == field.value)}
               onChange={(data) => {
-                console.log(data.value);
                 field.onChange(data.value);
               }}
               styles={{

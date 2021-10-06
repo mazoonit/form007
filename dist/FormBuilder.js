@@ -10,7 +10,7 @@ import ErrorArea from "./errors/ErrorArea.js";
 import MySubmit from "./inputs/MySubmit.js";
 import { Container, Row, Col } from "reactstrap/";
 import "./FormBuilder.css";
-import { StylesProvider, jssPreset, ThemeProvider, createTheme } from "@material-ui/core/styles";
+import { StylesProvider, jssPreset, ThemeProvider } from "@material-ui/core/styles";
 import { create } from "jss";
 import rtl from "jss-rtl";
 const jss = create({
@@ -54,15 +54,6 @@ export default function GenericForm({
     color = "#000";
   }
 
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: color
-      },
-      type: "light"
-    }
-  });
-
   const onSubmit = data => {
     if (submitHandler) {
       submitHandler(data, setError, language);
@@ -77,8 +68,6 @@ export default function GenericForm({
 
   return /*#__PURE__*/React.createElement(StylesProvider, {
     jss: jss
-  }, /*#__PURE__*/React.createElement(ThemeProvider, {
-    theme: theme
   }, /*#__PURE__*/React.createElement("div", {
     className: "genericForm",
     style: fullWidth ? {
@@ -129,5 +118,5 @@ export default function GenericForm({
     color: color,
     fullWidth: submitButtonFullWidth,
     submitButtonText: dictionary[language] && dictionary[language][submitButtonText] ? dictionary[language][submitButtonText] : "Submit"
-  }) : null)))));
+  }) : null))));
 }

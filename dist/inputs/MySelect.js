@@ -65,8 +65,9 @@ export default function MySelect({
   }, translate ? translate : name), /*#__PURE__*/React.createElement(Controller, {
     name: name,
     control: control,
-    defaultValue: value,
-    handleChange: handleChange && handleChange,
+    defaultValue: defaultValue ? defaultValue : rows[0].value,
+    value: value ? value : rows[0].value //handleChange={handleChange && handleChange}
+    ,
     render: ({
       field
     }) => {
@@ -75,8 +76,9 @@ export default function MySelect({
         isRtl: language == "ar" ? true : false,
         isSearchable: true,
         name: name,
-        defaultValue: defaultValue ? defaultValue : rows[0],
+        defaultValue: defaultValue ? rows.find(row => row.value == defaultValue) : rows[0],
         options: rows,
+        value: rows.find(row => row.value == field.value),
         onChange: data => {
           field.onChange(data.value);
         },
