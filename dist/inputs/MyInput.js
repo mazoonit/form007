@@ -50,8 +50,8 @@ export default function MyInput({
     }) => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TextField, _extends({}, field, {
       key: translate,
       helperText: errors[name] ? helperText : null,
-      error: errors[name] ? true : false,
-      fullWidth: fullWidth,
+      error: errors[name] ? true : false //fullWidth={fullWidth}
+      ,
       id: (variant ? variant : "Outlined") + "-basic",
       variant: variant ? variant : "outlined",
       size: size ? size : "small",

@@ -48,7 +48,7 @@ export default function MyInput({
               key={translate}
               helperText={errors[name] ? helperText : null}
               error={errors[name] ? true : false}
-              fullWidth={fullWidth}
+              //fullWidth={fullWidth}
               id={(variant ? variant : "Outlined") + "-basic"}
               variant={variant ? variant : "outlined"}
               size={size ? size : "small"}
