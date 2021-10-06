@@ -11,8 +11,6 @@ import "./FormBuilder.css";
 import {
   StylesProvider,
   jssPreset,
-  ThemeProvider,
-  createTheme,
 } from "@material-ui/core/styles";
 
 import { create } from "jss";
@@ -33,6 +31,7 @@ export default function GenericForm({
   fullWidth,
   submitButtonText,
   submitButtonFullWidth,
+  disableFormBoxShadow=false,
   color,
 }) {
   const {
@@ -50,12 +49,6 @@ export default function GenericForm({
   if (!color) {
     color = "#000";
   }
-  const theme = createTheme({
-    palette: {
-      primary: { main: color },
-      type: "light",
-    },
-  });
   const onSubmit = (data) => {
     if (submitHandler) {
       submitHandler(data, setError, language);
@@ -73,9 +66,8 @@ export default function GenericForm({
     ) : null;
   return (
     <StylesProvider jss={jss}>
-      <ThemeProvider theme={theme}>
         <div
-          className="genericForm"
+          className={`genericForm ${disableFormBoxShadow?"disableBoxShadow":""}`}
           style={fullWidth ? { width: "100%" } : null}
         >
           {titleHeader()}
@@ -151,7 +143,6 @@ export default function GenericForm({
             </Container>
           </form>
         </div>
-      </ThemeProvider>
     </StylesProvider>
   );
 }
