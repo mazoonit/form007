@@ -50,11 +50,12 @@ export default function MyInput({
               key={translate}
               helperText={errors[name] ? helperText : null}
               error={errors[name] ? true : false}
-              fullWidth={fullWidth}
+              //fullWidth={fullWidth}
               id={(variant ? variant : "Outlined") + "-basic"}
               variant={variant ? variant : "outlined"}
               size={size ? size : "small"}
               id={name}
+              color="primary"
               placeholder={placeHolder}
               type={type}
               style={{ padding: 0, verticalAlign: "center" }}

@@ -15,7 +15,7 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#198754",
+        main: "#fff",
         light: "#d63384",
         dark: "#dc3545",
         contrastText: "#fff"
@@ -124,23 +124,22 @@ function App() {
                   required: true,
                 },
               },
-            ],
-          ]}
-          values={{}}
-          dictionary={{ ar: ar, en: en }}
-          language={language}
-          languageName={language == "ar" ? "arabicName" : "latinName"}
-          dir={language == "ar" ? "rtl" : "ltr"}
-          submitButtonText={"Login"}
-          color={"#F00"}
-          submitHandler={Login}
-          noSubmit={false}
-          grid={{ xs: 12, md: 6 }}
-          disableFormBoxShadow={true}
-        />
-      </div>
+          ]
+        ]}
+        values={{sel:"bla"}}
+        dictionary={{ ar: ar, en: en }}
+        language={language}
+        languageName={language == "ar" ? "arabicName" : "latinName"}
+        dir={language == "ar" ? "rtl" : "ltr"}
+        submitButtonText={"Login"}
+        color={"#587fdd"}
+        submitHandler={Login}
+        noSubmit={false}
+        grid={{ xs: 12, md: 6 }}
+        title="5555555"
+      />
+    </div>
     </ThemeProvider>
-
   );
 }
 export default App;
