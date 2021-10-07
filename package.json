@@ -1,6 +1,6 @@
 {
   "name": "form007",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "private": false,
   "main": "dist/FormBuilder.js",
   "module": "dist/FormBuilder.js",
@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish": "rm -rf dist && mkdir dist &&  babel src/components -d dist --copy-files"
+    "publish:npm": "rm -rf dist && mkdir dist &&  babel src/components -d dist --copy-files"
   },
   "eslintConfig": {
     "extends": [
