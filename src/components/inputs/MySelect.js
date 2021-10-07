@@ -4,12 +4,11 @@ import { Controller } from "react-hook-form";
 //import Translate from "react-translate-component";
 import { create } from "jss";
 import rtl from "jss-rtl";
-import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+import { jssPreset } from "@material-ui/core/styles";
 import Select from "react-select";
 import { useTheme } from "@material-ui/core";
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
-
 export default function MySelect({
   name,
   language,
@@ -45,11 +44,8 @@ export default function MySelect({
   }
   let defaultLabelMargin = "0 0 0.75rem 0";
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
-  if (defaultValue) {
-    defaultValue = rows.filter((row) => row.value == defaultValue)[0];
-  }
   const theme = useTheme();
-  const color = theme.palette.primary.main;
+  let color = theme.palette.primary.main;
   return (
     <label style={{ width: "100%" }}>
       <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
@@ -58,8 +54,8 @@ export default function MySelect({
       <Controller
         name={name}
         control={control}
-        defaultValue={value}
-        value={value}
+        defaultValue={defaultValue ? defaultValue : rows[0].value}
+        value={value ? value : rows[0].value}
         //handleChange={handleChange && handleChange}
         render={({ field }) => {
           return (
@@ -68,10 +64,14 @@ export default function MySelect({
               isRtl={language == "ar" ? true : false}
               isSearchable={true}
               name={name}
-              defaultValue={defaultValue ? defaultValue : rows[0]}
+              defaultValue={
+                defaultValue
+                  ? rows.find((row) => row.value == defaultValue)
+                  : rows[0]
+              }
               options={rows}
+              value={rows.find((row) => row.value == field.value)}
               onChange={(data) => {
-                console.log(data.value);
                 field.onChange(data.value);
               }}
               styles={{
