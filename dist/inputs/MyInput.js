@@ -3,6 +3,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 import React from "react";
 import { Controller } from "react-hook-form";
 import { TextField, InputLabel } from "@material-ui/core";
+import { useTheme } from "@material-ui/core";
 export default function MyInput({
   name,
   translate,
@@ -14,7 +15,6 @@ export default function MyInput({
   registerObject,
   errors,
   variant,
-  color,
   fullWidth,
   placeHolder,
   labelMargin,
@@ -36,6 +36,8 @@ export default function MyInput({
       break;
   }
 
+  const theme = useTheme();
+  const color = theme.palette.primary.main;
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return /*#__PURE__*/React.createElement("div", {
     style: {}
@@ -56,6 +58,7 @@ export default function MyInput({
       variant: variant ? variant : "outlined",
       size: size ? size : "small",
       id: name,
+      color: "primary",
       placeholder: placeHolder,
       type: type,
       style: {

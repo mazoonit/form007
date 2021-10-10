@@ -5,8 +5,9 @@ import { Controller } from "react-hook-form";
 
 import { create } from "jss";
 import rtl from "jss-rtl";
-import { StylesProvider, jssPreset } from "@material-ui/core/styles";
-import Select from "react-select"; // Configure JSS
+import { jssPreset } from "@material-ui/core/styles";
+import Select from "react-select";
+import { useTheme } from "@material-ui/core"; // Configure JSS
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()]
@@ -25,7 +26,6 @@ export default function MySelect({
   variant,
   size,
   translateType,
-  color,
   fullWidth,
   maxWidth,
   minWidth,
@@ -46,12 +46,10 @@ export default function MySelect({
     rows = parsedRows;
   }
 
-  if (!color) {
-    color = "#000";
-  }
-
   let defaultLabelMargin = "0 0 0.75rem 0";
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
+  const theme = useTheme();
+  let color = theme.palette.primary.main;
   return /*#__PURE__*/React.createElement("label", {
     style: {
       width: "100%"

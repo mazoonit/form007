@@ -1,10 +1,8 @@
 import React from "react"; //import Translate from "react-translate-component";
 
 import Button from "@material-ui/core/Button";
-import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 export default function Submit({
-  submitButtonText,
-  color
+  submitButtonText
 }) {
   return /*#__PURE__*/React.createElement("div", {
     className: "btn-form"

@@ -16,6 +16,8 @@ import {
 
 import { create } from "jss";
 import rtl from "jss-rtl";
+import Typography from '@material-ui/core/Typography';
+
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 export default function GenericForm({
@@ -32,6 +34,7 @@ export default function GenericForm({
   fullWidth,
   submitButtonText,
   submitButtonFullWidth,
+  disableFormBoxShadow=false,
   color,
 }) {
   const {
@@ -57,12 +60,12 @@ export default function GenericForm({
 
   const titleHeader = () =>
     title ? (
-      <h3 style={{ textAlign: "center" }}>
+      <Typography color="primary" component="h4" variant="h4" style={{ textAlign: "center" }}>
         {dictionary[language] && dictionary[language][title]
           ? dictionary[language][title]
           : title}
         {/* <Translate content={title} />*/}
-      </h3>
+      </Typography>
     ) : null;
   return (
     <StylesProvider jss={jss}>

@@ -13,6 +13,7 @@ import "./FormBuilder.css";
 import { StylesProvider, jssPreset, ThemeProvider } from "@material-ui/core/styles";
 import { create } from "jss";
 import rtl from "jss-rtl";
+import Typography from '@material-ui/core/Typography';
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()]
 });
@@ -33,6 +34,7 @@ export default function GenericForm({
   fullWidth,
   submitButtonText,
   submitButtonFullWidth,
+  disableFormBoxShadow = false,
   color
 }) {
   const {
@@ -60,7 +62,10 @@ export default function GenericForm({
     }
   };
 
-  const titleHeader = () => title ? /*#__PURE__*/React.createElement("h3", {
+  const titleHeader = () => title ? /*#__PURE__*/React.createElement(Typography, {
+    color: "primary",
+    component: "h4",
+    variant: "h4",
     style: {
       textAlign: "center"
     }
