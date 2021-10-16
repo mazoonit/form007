@@ -31,6 +31,7 @@ export default function MySelect({
   latinArabicIdProcessing,
   languageName,
   labelMargin,
+  hideLabel,
 }) {
   if (latinArabicIdProcessing) {
     let parsedRows = [];
@@ -48,9 +49,11 @@ export default function MySelect({
   let color = theme.palette.primary.main;
   return (
     <label style={{ width: "100%" }}>
-      <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
-        {translate ? translate : name}
-      </p>
+      {!hideLabel ? (
+        <p style={{ color: color, margin: 0, margin: defaultLabelMargin }}>
+          {translate ? translate : name}
+        </p>
+      ) : null}
       <Controller
         name={name}
         control={control}

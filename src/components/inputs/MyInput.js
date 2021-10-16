@@ -18,6 +18,7 @@ export default function MyInput({
   placeHolder,
   labelMargin,
   enableLabel = false,
+  hideLabel,
 }) {
   let defaultLabelMargin = "0 0 1rem 0 ";
   switch (variant) {
@@ -36,7 +37,9 @@ export default function MyInput({
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return (
     <div style={{}}>
-      <p style={{ color: color, margin: defaultLabelMargin }}>{translate}</p>
+      {!hideLabel ? (
+        <p style={{ color: color, margin: defaultLabelMargin }}>{translate}</p>
+      ) : null}
       <Controller
         render={({ field }) => (
           <>

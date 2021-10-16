@@ -33,7 +33,8 @@ export default function MySelect({
   defaultValue,
   latinArabicIdProcessing,
   languageName,
-  labelMargin
+  labelMargin,
+  hideLabel
 }) {
   if (latinArabicIdProcessing) {
     let parsedRows = [];
@@ -54,13 +55,13 @@ export default function MySelect({
     style: {
       width: "100%"
     }
-  }, /*#__PURE__*/React.createElement("p", {
+  }, !hideLabel ? /*#__PURE__*/React.createElement("p", {
     style: {
       color: color,
       margin: 0,
       margin: defaultLabelMargin
     }
-  }, translate ? translate : name), /*#__PURE__*/React.createElement(Controller, {
+  }, translate ? translate : name) : null, /*#__PURE__*/React.createElement(Controller, {
     name: name,
     control: control,
     defaultValue: defaultValue ? defaultValue : rows[0].value,

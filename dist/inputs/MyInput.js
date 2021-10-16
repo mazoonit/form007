@@ -18,7 +18,8 @@ export default function MyInput({
   fullWidth,
   placeHolder,
   labelMargin,
-  enableLabel = false
+  enableLabel = false,
+  hideLabel
 }) {
   let defaultLabelMargin = "0 0 1rem 0 ";
 
@@ -41,12 +42,12 @@ export default function MyInput({
   defaultLabelMargin = labelMargin ? labelMargin : defaultLabelMargin;
   return /*#__PURE__*/React.createElement("div", {
     style: {}
-  }, /*#__PURE__*/React.createElement("p", {
+  }, !hideLabel ? /*#__PURE__*/React.createElement("p", {
     style: {
       color: color,
       margin: defaultLabelMargin
     }
-  }, translate), /*#__PURE__*/React.createElement(Controller, {
+  }, translate) : null, /*#__PURE__*/React.createElement(Controller, {
     render: ({
       field
     }) => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(TextField, _extends({}, field, {
